@@ -1,11 +1,13 @@
-# Utilisation de l'image officielle PHP avec Apache
 FROM php:8.2-apache
 
-# Installation de l'extension pdo_mysql indispensable pour votre code index.php
-RUN docker-php-ext-install pdo pdo_mysql
+# Installation des dépendances système nécessaires pour MariaDB/MySQL
+RUN apt-get update && apt-get install -y \
+    libmariadb-dev \
+    && docker-php-ext-install pdo pdo_mysql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copie de tous les fichiers de votre dépôt vers le dossier web du serveur
+# Copie des fichiers à la racine
 COPY . /var/www/html/
 
-# Attribution des droits au serveur web pour éviter les erreurs de permissions
+# Permissions pour Apache
 RUN chown -R www-data:www-data /var/www/html/
