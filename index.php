@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username']) && !empty
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Chat</h1>
+        <h1 class="text-center">Mon Super Chat</h1>
         <form action="index.php" method="post" class="mb-4">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur :</label>
